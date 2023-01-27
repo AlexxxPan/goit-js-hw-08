@@ -79,14 +79,17 @@ function onFormSubmit(e) {
 }
 
 function reloadPage() {
+  try {
    const savedValues = localStorage.getItem(LOCALSTORAGE_KEY);
-
+ 
   if (savedValues) {
     formData = JSON.parse(savedValues);
     console.log(formData);
 
     email.value = formData.email;
     message.value = formData.message;
-    
-  }
+      }
+} catch (error) {
+  console.error('Error.message ', error.message);
+}
 }
