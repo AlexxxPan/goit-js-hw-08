@@ -63,6 +63,8 @@ function storageFormData(e) {
   localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(formData));
 }
 
+
+
 function onFormSubmit(e) {
   e.preventDefault();
 
@@ -76,6 +78,15 @@ function onFormSubmit(e) {
   e.currentTarget.reset();
   localStorage.removeItem(LOCALSTORAGE_KEY);
   formData = {};
+}
+
+function loadData(){
+  var data = JSON.parse(localStorage.getItem(form.id));
+  if(data != null){ // проверка на null и undefined
+    form.elements.forEach(function(element){
+      element.value = data[element.name];
+    });
+  }
 }
 
 function reloadPage() {
@@ -93,3 +104,4 @@ function reloadPage() {
   console.error('Error.message ', error.message);
 }
 }
+loadData();
